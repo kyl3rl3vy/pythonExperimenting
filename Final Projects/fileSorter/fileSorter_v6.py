@@ -5,13 +5,13 @@ import os
 import glob
 
 # Start of the GUI #
-root = tk.Tk()
+root = tk.Tk(className=' File Sorter')
 
-canvas = tk.Canvas(root, width=400, height=300)
+canvas = tk.Canvas(root, width=400, height=300, bg='white')
 canvas.grid(columnspan=3, rowspan=3)
 
 #instructions
-instructions = tk.Label(root, text='Select destination folder')
+instructions = tk.Label(root, text='Select destination folder', font='Arial', bg='white')
 instructions.grid(columnspan=3, column=0, row=1)
 
 #function
@@ -20,11 +20,11 @@ def open_folder():
     folder = askdirectory(parent=root, title='Select a folder')
     if folder:
 
-        print(folder)
         directory = folder
         go(directory)
         browse_text.set('Done!')
-
+        quit()
+    else: browse_text.set('Browse')
 #main event
 def go(directory):
     # Changes working direcotry
@@ -40,9 +40,6 @@ def go(directory):
             extension_set.add(extension[1])
         except IndexError:
             continue
-
-
-    print(extension_set)
 
     # Function to create directory for each type of extension
     def createDirs():
@@ -73,8 +70,6 @@ def go(directory):
         src = currentPath
         dst = newPath
 
-        print(src)
-        print(dst)
         list = os.listdir()
 
         print(list)
@@ -92,11 +87,13 @@ def go(directory):
 
 #browse button
 browse_text = tk.StringVar()
-browse_btn = tk.Button(root, command=lambda:open_folder(), textvariable=browse_text, bg='#20bebe', fg='white', height=2, width=15)
+browse_btn = tk.Button(root, command=lambda:open_folder(),
+                        textvariable=browse_text, bg='#20bebe', fg='white',
+                        height=2, width=15, font='Arial')
 browse_text.set('Browse')
 browse_btn.grid(column=1, row=2)
 
-canvas = tk.Canvas(root, width=400, height=100)
+canvas = tk.Canvas(root, width=400, height=50, bg='white')
 canvas.grid(columnspan=3)
 
 # End of the GUI #
