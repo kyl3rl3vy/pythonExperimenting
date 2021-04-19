@@ -88,15 +88,14 @@ def myClick():
     #Make other organizational folders
     os.system('mkdir "02 - Sorted" "03 - Edited" "04 - Exported"')
 
+    #Self Destruct
+
+    from os import remove
+    from sys import argv
+
+    remove(argv[0])
+
 myButton = Button(root, text='Press to start', padx = 100, pady = 100, command=myClick)
 myButton.pack()
 
 root.mainloop()
-
-
-#Self Destruct
-
-from os import remove
-from sys import argv
-
-remove(argv[0])
